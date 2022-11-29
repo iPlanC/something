@@ -120,8 +120,8 @@
         var url = document.location.href;
         var bg = /bg=.*&/.exec(url)[0];
         var fg = /fg=.*/.exec(url)[0];
-        bg = bg.slice(3, 10);
-        fg = fg.slice(3, 10);
+        bg = bg.slice(3, 9);
+        fg = fg.slice(3, 9);
         console.log(bg, fg);
 
         document.documentElement.style.setProperty("--custom-bg", "#" + bg);
