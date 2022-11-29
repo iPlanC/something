@@ -1,8 +1,8 @@
 <!--
  * @Author: PlanC
  * @Date: 2022-11-29 11:24:14
- * @LastEditTime: 2022-11-29 11:52:14
- * @FilePath: \undefinedc:\Users\planc\Desktop\Untitled-2.html
+ * @LastEditTime: 2022-11-29 13:14:33
+ * @FilePath: \something\index.html
 -->
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -15,19 +15,44 @@
     <style type="text/css">
         @font-face {
             font-family: "Genshin Impact";
-            src: url("https://raw.githubusercontent.com/iplanc/something/main/Genshin_Impact_Font.font-woff");
+            src: url("./Genshin_Impact_Font.woff");
         }
 
-        html, body {
+        body {
+            background-color: lightGray;
+        }
+
+        .themes form text {
+            font-size: 30px;
+            font-family: "Genshin Impact";
+        }
+        .themes form .bg, .themes form .fg, .themes form button {
+            width: 7em;
+            font-size: 20px;
+            padding: 0px;
+            text-align: center;
+        }
+        .themes form .bg {
+            border-radius: 0.5rem 0rem 0rem 0.5rem;
+            border: 1px solid black;
+            border-right: 0px;
+            margin-right: 0px;
+        }
+        .themes form .fg {
+            border: 1px solid black;
+            border-left: 0px;
+            border-right: 0px;;
             margin: 0px;
         }
-
-        .themes {
-            display: flex;
-            flex-direction: column;
-            margin: 8px;
+        .themes form button {
+            border-radius: 0rem 0.5rem 0.5rem 0rem;
+            border: 1px solid black;
+            margin-left: 0px;
         }
-        .themes .colorCard {
+        .themes .themesTemplate {
+            display: flex;
+        }
+        .themes .themesTemplate .colorCard {
             width: 200px;
             height: 200px;
             border-radius: 0em 2em 2em 2em;
@@ -37,8 +62,7 @@
             align-items: center;
             position: relative;
         }
-
-        .themes .colorCard .colorCardPicker {
+        .themes .themesTemplate .colorCard .colorCardPicker {
             position: absolute;
             left: 10px;
             top: 10px;
@@ -47,39 +71,79 @@
             border-right: 10px solid transparent;
             border-bottom: 10px solid transparent;
         }
-
-        .themes .colorCard p, .themes .colorCard strong {
-            font-size: 20px;
+        .themes .themesTemplate .colorCard code {
+            font-size: 25px;
+        }
+        .themes .themesTemplate .colorCard strong {
+            font-size: 30px;
             font-family: "Genshin Impact";
+            font-weight: 100;
         }
 
         a {
             width: 200px;
             text-decoration: none;
+            margin: 4px;
         }
 
     </style>
+    <script type="text/javascript" src="./data.js"></script>
 </head>
 
 <body>
-    <div class="themes">
+    <div>
         <h1>themes</h1>
-        <a href="./show.html?bg=#202020&fg=#F8D022">
-            <div class="colorCard" style="background-color: #202020;">
-
-                <div class="colorCardPicker" style="border-top: 10px solid #F8D022;border-left: 10px solid #F8D022;"></div>
-
-                <p style="color: #F8D022;">
-                    背景 #202020 <br />
-                    前景 #F8D022
-                </p>
-
-                <strong style="color: #F8D022;">
-                    你好 世界
-                </strong>
-            </div>
-        </a>
+        <div class="themes">
+            <form action="./show.html">
+                <text>在此输入自定义的颜色</text> <br />
+                <input type="text" placeholder="背景色" name="bg" class="bg"><input type="text" placeholder="前景色" name="fg" class="fg"><button type="submit" onmouseover="previewColor()" class="submit">GO!</button>
+            </form>
+            <div class="themesTemplate"></div>
+        </div>
     </div>
+
+    <script type="text/javascript">
+        data.themes.forEach((each) => {
+            console.log("#" + each.bg, "#" + each.fg);
+            var target = document.getElementsByClassName("themesTemplate")[0];
+
+            var jumpLink = document.createElement("a");
+            jumpLink.href = "./show.html?bg=" + "#" + each.bg + "&fg=" + "#" + each.fg;
+            target.appendChild(jumpLink);
+
+            var colorCard = document.createElement("div");
+            colorCard.className = "colorCard";
+            colorCard.style.backgroundColor = "#" + each.bg;
+            jumpLink.appendChild(colorCard);
+
+            var colorCardPicker = document.createElement("div");
+            colorCardPicker.className = "colorCardPicker";
+            colorCardPicker.style.borderTopColor = "#" + each.fg;
+            colorCardPicker.style.borderTopWidth = "10px";
+            colorCardPicker.style.borderTopStyle = "solid";
+            colorCardPicker.style.borderLeftColor = "#" + each.fg;
+            colorCardPicker.style.borderLeftWidth = "10px";
+            colorCardPicker.style.borderLeftStyle = "solid";
+            colorCard.appendChild(colorCardPicker);
+
+            var colorCardP = document.createElement("code");
+            colorCardP.style.color = "#" + each.fg;
+            colorCardP.innerHTML = "背景 " + "#" + each.bg.toUpperCase() + "<br />前景 " + "#" + each.fg.toUpperCase();
+            colorCard.appendChild(colorCardP);
+
+            var colorCardStrong = document.createElement("strong");
+            colorCardStrong.style.color = "#" + each.fg;
+            colorCardStrong.innerHTML = "你好 世界";
+            colorCard.appendChild(colorCardStrong);
+        });
+
+        function previewColor() {
+            var button = document.getElementsByClassName("submit")[0];
+            button.style.backgroundColor = document.getElementsByClassName("bg")[0].innerHTML;
+            button.style.color = document.getElementsByClassName("fg")[0].innerHTML;
+            console.log(document.getElementsByClassName("bg"), document.getElementsByClassName("fg"));
+        }
+    </script>
 </body>
 
 </html>
