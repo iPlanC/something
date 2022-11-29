@@ -1,42 +1,85 @@
-<h1>themes</h1>
-<div style="
-    width: 200px; 
-    height: 200px; 
-    border-radius: 0em 2em 2em 2em; 
-    background-color: #202020; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative
-    ">
-    
-    <div style="
-        position: absolute;
-        left: 10px;
-        top: 10px;
-        width: 0;
-        height: 0;
-        border: 10px solid #F8D022;
-        border-right: 10px solid transparent;
-        border-bottom: 10px solid transparent;
-        ">
+<!--
+ * @Author: PlanC
+ * @Date: 2022-11-29 11:24:14
+ * @LastEditTime: 2022-11-29 11:52:14
+ * @FilePath: \undefinedc:\Users\planc\Desktop\Untitled-2.html
+-->
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <style type="text/css">
+        @font-face {
+            font-family: "Genshin Impact";
+            src: url("https://raw.githubusercontent.com/iplanc/something/main/Genshin_Impact_Font.font-woff");
+        }
+
+        html, body {
+            margin: 0px;
+        }
+
+        .themes {
+            display: flex;
+            flex-direction: column;
+            margin: 8px;
+        }
+        .themes .colorCard {
+            width: 200px;
+            height: 200px;
+            border-radius: 0em 2em 2em 2em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .themes .colorCard .colorCardPicker {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            width: 0;
+            height: 0;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+        }
+
+        .themes .colorCard p, .themes .colorCard strong {
+            font-size: 20px;
+            font-family: "Genshin Impact";
+        }
+
+        a {
+            width: 200px;
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="themes">
+        <h1>themes</h1>
+        <a href="./show.html?bg=#202020&fg=F8D022">
+            <div class="colorCard" style="background-color: #202020;">
+
+                <div class="colorCardPicker" style="border-top: 10px solid #F8D022;border-left: 10px solid #F8D022;"></div>
+
+                <p style="color: #F8D022;">
+                    背景 #202020 <br />
+                    前景 #F8D022
+                </p>
+
+                <strong style="color: #F8D022;">
+                    你好 世界
+                </strong>
+            </div>
+        </a>
     </div>
+</body>
 
-    <p style="
-        color: #F8D022; 
-        font-size: 20px;
-        ">
-        <code>背景 #202020</code> <br/> 
-        <code>前景 #F8D022</code> 
-    </p>
-
-    <strong style="
-        color: #f8d022; 
-        font-size: 20px;
-        ">
-        你好 世界
-    </strong>
-</div>
-
-<hr/>
+</html>

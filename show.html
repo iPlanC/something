@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>show</title>
+    <style type="text/css">
+        @font-face {
+            font-family: "Genshin Impact";
+            src: url("https://raw.githubusercontent.com/iplanc/something/main/Genshin_Impact_Font.font-woff");
+        }
+        @keyframes show-info {
+            from {
+                opacity: 100%;
+            }
+            to {
+                opacity: 12.5%;
+            }
+        }
+        @keyframes hide-info {
+            from {
+                opacity: 12.5%;
+            }
+            to {
+                opacity: 100%;
+            }
+        }
+        :root {
+            --custom-bg: #ffffff;
+            --custom-fg: #ffffff;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+            overflow-x: hidden;
+        }
+        body {
+            background-color: var(--custom-bg);
+            color: var(--custom-fg);
+        }
+        body::-webkit-scrollbar {
+            background-color: var(--custom-fg);
+            width: 10px;
+        }
+        body::-webkit-scrollbar-thumb {
+            background-color: var(--custom-bg);
+            border: 1px var(--custom-fg) solid;
+        }
+
+        h1, h2, h3, h4, h5, h6, p {
+            font-family: "Genshin Impact";
+            font-size: 2rem;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin: 8px;
+        }
+
+        .images {
+            display: flex;
+        }
+        .images .images-queue {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1;
+        }
+        .images .images-queue img {
+            width: 100%;
+            transition: all, 0.25s;
+            margin: 0px;
+            padding: 0px;
+            z-index: 0;
+        }
+        .images .images-queue img:hover {
+            transform: scale(1.1);
+            transform-origin: right;
+            transition: all, 0.25s;
+            z-index: 10;
+        }
+
+        .images .thumbnail {
+            flex: 3;
+            position: relative;
+        }
+        .images .thumbnail .main_img{
+            width: 100%;
+            animation: hide-info 0.25s ease-out 0s 1 normal forwards;
+        }
+        .images .thumbnail .main_img:hover {
+            animation: show-info 0.25s ease-out 0s 1 normal forwards;
+        }
+
+        .images .thumbnail .cover {
+            font-family: "Genshin Impact";
+            display: none;
+        }
+        .images .thumbnail:hover .cover {
+            display: block;
+            position: absolute;
+            top: 0;
+        }
+
+        footer {
+            width: 100%;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+        }
+        footer p {
+            font-family: "Genshin Impact";
+            font-size: 1rem;
+        }
+    </style>
+    <script type="text/javascript">
+        var url = document.location.href;
+        var bg = /bg=#.*&/.exec(url)[0];
+        var fg = /fg=#.*/.exec(url)[0];
+        bg = bg.slice(3, 10);
+        fg = fg.slice(3, 10);
+        console.log(bg, fg);
+
+        document.documentElement.style.setProperty("--custom-bg", bg);
+        document.documentElement.style.setProperty("--custom-fg", fg);
+    </script>
+</head>
+<body>
+    <h1>Showcase</h1>
+    <p>this is a showcase for a lot of texts, images and codespaces.</p>
+    <div class="images">
+        <div class="thumbnail">
+            <img src="https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg" class="main_img">
+            <div class="cover">
+                a fox
+            </div>
+        </div>
+        <div class="images-queue">
+            <img src="https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg">
+            <img src="https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg">
+            <img src="https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg">
+        </div>
+    </div>
+    <footer>
+        <p>摸摸狐老师</p>
+    </footer>
+</body>
+</html>
